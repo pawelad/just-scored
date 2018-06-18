@@ -1,0 +1,80 @@
+[
+    {
+        "venue": "Saransk",
+        "location": "Mordovia Arena",
+        "status": "future",
+        "time": null,
+        "fifa_id": "300331550",
+        "home_team_statistics": null,
+        "away_team_statistics": null,
+        "datetime": "2018-06-19T12:00:00Z",
+        "last_event_update_at": null,
+        "last_score_update_at": "2018-06-19T00:38:52Z",
+        "home_team": {
+            "country": "Colombia",
+            "code": "COL",
+            "goals": 0
+        },
+        "away_team": {
+            "country": "Japan",
+            "code": "JPN",
+            "goals": 0
+        },
+        "winner": null,
+        "winner_code": null,
+        "home_team_events": [],
+        "away_team_events": []
+    },
+    {
+        "venue": "Moscow",
+        "location": "Spartak Stadium",
+        "status": "future",
+        "time": null,
+        "fifa_id": "300331545",
+        "home_team_statistics": null,
+        "away_team_statistics": null,
+        "datetime": "2018-06-19T15:00:00Z",
+        "last_event_update_at": null,
+        "last_score_update_at": "2018-06-19T00:38:52Z",
+        "home_team": {
+            "country": "Poland",
+            "code": "POL",
+            "goals": 0
+        },
+        "away_team": {
+            "country": "Senegal",
+            "code": "SEN",
+            "goals": 0
+        },
+        "winner": null,
+        "winner_code": null,
+        "home_team_events": [],
+        "away_team_events": []
+    },
+    {
+        "venue": "St. Petersburg",
+        "location": "Saint Petersburg Stadium",
+        "status": "future",
+        "time": null,
+        "fifa_id": "300331495",
+        "home_team_statistics": null,
+        "away_team_statistics": null,
+        "datetime": "2018-06-19T18:00:00Z",
+        "last_event_update_at": null,
+        "last_score_update_at": "2018-06-19T00:38:52Z",
+        "home_team": {
+            "country": "Russia",
+            "code": "RUS",
+            "goals": 0
+        },
+        "away_team": {
+            "country": "Egypt",
+            "code": "EGY",
+            "goals": 0
+        },
+        "winner": null,
+        "winner_code": null,
+        "home_team_events": [],
+        "away_team_events": []
+    }
+]

@@ -1,0 +1,136 @@
+[
+    {
+        "venue": "Rostov-On-Don",
+        "location": "Rostov Arena",
+        "status": "in progress",
+        "time": "90'+2'",
+        "fifa_id": "300331525",
+        "datetime": "2018-06-17T18:00:00Z",
+        "last_event_update_at": "2018-06-17T19:50:24Z",
+        "last_score_update_at": "2018-06-17T19:50:41Z",
+        "home_team": {
+            "country": "Brazil",
+            "code": "BRA",
+            "goals": 1
+        },
+        "away_team": {
+            "country": "Switzerland",
+            "code": "SUI",
+            "goals": 1
+        },
+        "winner": null,
+        "winner_code": null,
+        "home_team_events": [
+            {
+                "id": 132,
+                "type_of_event": "goal",
+                "player": "PHILIPPE COUTINHO",
+                "time": "20'"
+            },
+            {
+                "id": 134,
+                "type_of_event": "yellow-card",
+                "player": "CASEMIRO",
+                "time": "47'"
+            },
+            {
+                "id": 136,
+                "type_of_event": "substitution-out",
+                "player": "CASEMIRO",
+                "time": "60'"
+            },
+            {
+                "id": 137,
+                "type_of_event": "substitution-in",
+                "player": "FERNANDINHO",
+                "time": "60'"
+            },
+            {
+                "id": 138,
+                "type_of_event": "substitution-out",
+                "player": "PAULINHO",
+                "time": "67'"
+            },
+            {
+                "id": 139,
+                "type_of_event": "substitution-in",
+                "player": "RENATO AUGUSTO",
+                "time": "67'"
+            },
+            {
+                "id": 144,
+                "type_of_event": "substitution-out",
+                "player": "GABRIEL JESUS",
+                "time": "79'"
+            },
+            {
+                "id": 145,
+                "type_of_event": "substitution-in",
+                "player": "ROBERTO FIRMINO",
+                "time": "79'"
+            }
+        ],
+        "away_team_events": [
+            {
+                "id": 133,
+                "type_of_event": "yellow-card",
+                "player": "Stephan LICHTSTEINER",
+                "time": "31'"
+            },
+            {
+                "id": 135,
+                "type_of_event": "goal",
+                "player": "Steven ZUBER",
+                "time": "50'"
+            },
+            {
+                "id": 140,
+                "type_of_event": "yellow-card",
+                "player": "Fabian SCHAER",
+                "time": "65'"
+            },
+            {
+                "id": 141,
+                "type_of_event": "yellow-card",
+                "player": "Valon BEHRAMI",
+                "time": "68'"
+            },
+            {
+                "id": 142,
+                "type_of_event": "substitution-out",
+                "player": "Valon BEHRAMI",
+                "time": "71'"
+            },
+            {
+                "id": 143,
+                "type_of_event": "substitution-in",
+                "player": "Denis ZAKARIA",
+                "time": "71'"
+            },
+            {
+                "id": 146,
+                "type_of_event": "substitution-out",
+                "player": "Haris SEFEROVIC",
+                "time": "80'"
+            },
+            {
+                "id": 147,
+                "type_of_event": "substitution-in",
+                "player": "Breel EMBOLO",
+                "time": "80'"
+            },
+            {
+                "id": 148,
+                "type_of_event": "substitution-out",
+                "player": "Stephan LICHTSTEINER",
+                "time": "87'"
+            },
+            {
+                "id": 149,
+                "type_of_event": "substitution-in",
+                "player": "Michael LANG",
+                "time": "87'"
+            }
+        ]
+    }
+]
