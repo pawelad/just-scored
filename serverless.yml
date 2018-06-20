@@ -13,5 +13,7 @@ package:
    - ./bin/**
 
 functions:
-  hello:
-    handler: bin/just-scored
+  goal-checker:
+    handler: bin/goal-checker
+    events:
+      - schedule: rate(1 minute)
