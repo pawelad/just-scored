@@ -5,6 +5,22 @@ provider:
   runtime: go1.x
   stage: dev
   region: us-east-1
+  environment:
+    DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        Fn::GetAtt:
+          - GoalsDynamoDBTable
+          - Arn
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
 
 package:
  exclude:
@@ -18,3 +34,21 @@ functions:
     events:
       # Every minute 12am to 2pm Moscow time (UTC+3)
       - schedule: cron(* 9-23 * * ? *)
+
+resources:
+  Resources:
+    GoalsDynamoDBTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        TableName: ${self:provider.environment.DYNAMODB_TABLE}
+        AttributeDefinitions:
+          -
+            AttributeName: EventID
+            AttributeType: N
+        KeySchema:
+          -
+            AttributeName: EventID
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
