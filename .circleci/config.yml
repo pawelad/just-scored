@@ -16,25 +16,25 @@ jobs:
           name: Run tests
           command: go test -v ./...
 
-    build:
-      working_directory: /go/src/github.com/pawelad/just-scored
-      docker:
+  build:
+    working_directory: /go/src/github.com/pawelad/just-scored
+    docker:
         - image: circleci/golang:1.10
 
-      steps:
-        - checkout
+    steps:
+      - checkout
 
-        - run:
-            name: Build binary files
-            command: make build
+      - run:
+          name: Build binary files
+          command: make build
 
-        - persist_to_workspace:
+      - persist_to_workspace:
           root: /go/src/github.com/pawelad/just-scored
           paths:
             - bin
 
-        - store_artifacts:
-            path: bin
+      - store_artifacts:
+          path: bin
           
   deploy:
     working_directory: /go/src/github.com/pawelad/just-scored
@@ -42,18 +42,18 @@ jobs:
       - image: circleci/node:10.4
 
     steps:
-        - checkout
+      - checkout
 
-        - attach_workspace:
+      - attach_workspace:
           at: /go/src/github.com/pawelad/just-scored
 
-        - run:
-            name: Install Serverless CLI
-            command: sudo npm i -g serverless
+      - run:
+          name: Install Serverless CLI
+          command: sudo npm i -g serverless
 
-        - run:
-            name: Deploy application
-            command: serverless deploy
+      - run:
+          name: Deploy application
+          command: serverless deploy
 
 workflows:
   version: 2
