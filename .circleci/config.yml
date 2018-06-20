@@ -1,10 +1,10 @@
 version: 2
 jobs:
-  build:
+  test:
+    working_directory: /go/src/github.com/pawelad/just-scored
     docker:
       - image: circleci/golang:1.10
 
-    working_directory: /go/src/github.com/pawelad/just-scored
     steps:
       - checkout
 
@@ -15,4 +15,67 @@ jobs:
       - run:
           name: Run tests
           command: go test -v ./...
-  
+
+    build:
+      working_directory: /go/src/github.com/pawelad/just-scored
+      docker:
+        - image: circleci/golang:1.10
+
+      steps:
+        - checkout
+
+        - run:
+            name: Build binary files
+            command: make build
+
+        - persist_to_workspace:
+          root: /go/src/github.com/pawelad/just-scored
+          paths:
+            - bin
+
+        - store_artifacts:
+            path: bin
+          
+  deploy:
+    working_directory: /go/src/github.com/pawelad/just-scored
+    docker:
+      - image: circleci/node:10.4
+
+    steps:
+        - checkout
+
+        - attach_workspace:
+          at: /go/src/github.com/pawelad/just-scored
+
+        - run:
+            name: Install Serverless CLI
+            command: sudo npm i -g serverless
+
+        - run:
+            name: Deploy application
+            command: serverless deploy
+
+workflows:
+  version: 2
+  build-test-and-deploy:
+    jobs:
+      - test:
+          filters:
+            tags:
+              only: /.*/
+      - build:
+          requires:
+            - test
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
+      - deploy:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
