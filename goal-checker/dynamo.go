@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"os"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/session"
@@ -67,7 +68,7 @@ func ParseMatchEvents(match *worldcup.Match) {
 // addGoal adds passed goal to DynamoDB
 func addGoal(goal *Goal) {
 	db := dynamo.New(session.New())
-	table := db.Table("Goals") // TODO: Configure via environment variable
+	table := db.Table(os.Getenv("DYNAMODB_TABLE"))
 
 	log.Printf("Adding goal '%+v'", goal)
 

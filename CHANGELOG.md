@@ -6,6 +6,9 @@ adheres to [Semantic Versioning][semver].
 
 ## [Unreleased][unreleased]
 
+### Fixed
+- Use `DYNAMODB_TABLE` environment variable when connecting to DynamoDB table.
+
 ## [v0.0.2][v0.0.2] - 2018-06-20
 ### Fixed
 - Added DynamoDB definition and appropiate IAM to Serverless config file. 
