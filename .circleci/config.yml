@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.10
+
+    working_directory: /go/src/github.com/pawelad/just-scored
+    steps:
+      - checkout
+
+      - run:
+          name: Install dependencies
+          command: go get -v -t -d ./...
+
+      - run:
+          name: Run tests
+          command: go test -v ./...
+  
