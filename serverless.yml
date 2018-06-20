@@ -16,4 +16,5 @@ functions:
   goal-checker:
     handler: bin/goal-checker
     events:
-      - schedule: rate(1 minute)
+      # Every minute 12am to 2pm Moscow time (UTC+3)
+      - schedule: cron(* 9-23 * * ? *)
