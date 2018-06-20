@@ -37,7 +37,7 @@ jobs:
           path: bin
           
   deploy:
-    working_directory: /go/src/github.com/pawelad/just-scored
+    working_directory: ~/repo
     docker:
       - image: circleci/node:10.4
 
@@ -45,7 +45,7 @@ jobs:
       - checkout
 
       - attach_workspace:
-          at: /go/src/github.com/pawelad/just-scored
+          at: ~/repo
 
       - run:
           name: Install Serverless CLI
