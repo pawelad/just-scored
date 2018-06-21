@@ -14,17 +14,18 @@ import (
 // Goal holds all relevant World Cup goal information,
 // based on worldcup.Match and worldcup.TeamEvent structure
 type Goal struct {
-	EventID    int    // e.g. 1
+	EventID   int       // Hash key
+	CreatedAt time.Time // Range key
+
 	Player     string // e.g. "Bender RODRIGUEZ"
 	PlayerTeam string // e.g. "FOO"
 	GoalTime   string // e.g. "90'+2'"
 	IsPenalty  bool
 
-	MatchID string // e.g. "1"
+	MatchID string
 	Match   string // e.g. "FOO - BAR"
 	Score   string // e.g. "0 - 0"
 
-	CreatedAt          time.Time
 	Processed          bool
 	NotificationSentAt interface{} // time.Time if sent, nil otherwise
 }

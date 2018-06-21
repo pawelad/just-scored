@@ -41,10 +41,16 @@ resources:
           -
             AttributeName: EventID
             AttributeType: N
+          -
+            AttributeName: CreatedAt
+            AttributeType: S
         KeySchema:
           -
             AttributeName: EventID
             KeyType: HASH
+          -
+            AttributeName: CreatedAt
+            KeyType: RANGE
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
