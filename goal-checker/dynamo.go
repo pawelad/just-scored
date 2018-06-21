@@ -39,7 +39,7 @@ func ParseMatchEvents(match *worldcup.Match) {
 		Match:   fmt.Sprintf("%s - %s", match.AwayTeam.Code, match.HomeTeam.Code),
 		Score:   fmt.Sprintf("%d - %d", match.AwayTeam.Goals, match.HomeTeam.Goals),
 
-		CreatedAt:          time.Now(),
+		CreatedAt:          time.Now().UTC(),
 		Processed:          false,
 		NotificationSentAt: nil,
 	}

@@ -9,6 +9,9 @@ adheres to [Semantic Versioning][semver].
 ## Added
 - Set `CreatedAt` as DynamoDB range key.
 
+## Changed
+- Save `CreatedAt` as UTC.
+
 ## [v0.0.4][v0.0.4] - 2018-06-21
 ### Fixed
 - Better handle event types and correctly process penalty goals (#1).
