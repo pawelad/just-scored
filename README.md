@@ -10,7 +10,7 @@ The project is made of two AWS Lambda functions:
 - `goal-notifier`, which is triggered on DynamoDB table item creation and
   sends a notification to configured Slack integration
 
-The third piece of it all is `worlcup` - a very simple API client I made for
+The third piece of it all is `worlcup` - a very simple API wrapper I made for
 http://worldcup.sfg.io/. I may put it in a separate repository after I
 implement all endpoints, but I decided to leave it here at the moment.
 
