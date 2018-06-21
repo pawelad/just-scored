@@ -12,14 +12,6 @@ type Team struct {
 	Goals   int    `json:"goals"`
 }
 
-// A TeamEvent represents a single team event resource received from http://worldcup.sfg.io/
-type TeamEvent struct {
-	ID          int    `json:"id"`
-	Player      string `json:"player"`
-	Time        string `json:"time"`
-	TypeOfEvent string `json:"type_of_event"`
-}
-
 // A Match represents a single match resource received from http://worldcup.sfg.io/
 type Match struct {
 	AwayTeam          Team        `json:"away_team"`

@@ -6,6 +6,9 @@ adheres to [Semantic Versioning][semver].
 
 ## [Unreleased][unreleased]
 
+### Fixed
+- Better handle event types and correctly process penalty goals (#1).
+
 ## [v0.0.3][v0.0.3] - 2018-06-20
 ### Fixed
 - Use `DYNAMODB_TABLE` environment variable when connecting to DynamoDB table.

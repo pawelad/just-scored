@@ -18,6 +18,7 @@ type Goal struct {
 	Player     string // e.g. "Bender RODRIGUEZ"
 	PlayerTeam string // e.g. "FOO"
 	GoalTime   string // e.g. "90'+2'"
+	IsPenalty  bool
 
 	MatchID string // e.g. "1"
 	Match   string // e.g. "FOO - BAR"
@@ -43,22 +44,24 @@ func ParseMatchEvents(match *worldcup.Match) {
 	}
 
 	for _, event := range match.AwayTeamEvents {
-		if event.TypeOfEvent == "goal" {
+		if event.IsGoal() {
 			goal.EventID = event.ID
 			goal.Player = event.Player
 			goal.PlayerTeam = match.AwayTeam.Code
 			goal.GoalTime = event.Time
+			goal.IsPenalty = event.IsPenalty()
 
 			addGoal(&goal)
 		}
 	}
 
 	for _, event := range match.HomeTeamEvents {
-		if event.TypeOfEvent == "goal" {
+		if event.IsGoal() {
 			goal.EventID = event.ID
 			goal.Player = event.Player
 			goal.PlayerTeam = match.HomeTeam.Code
 			goal.GoalTime = event.Time
+			goal.IsPenalty = event.IsPenalty()
 
 			addGoal(&goal)
 		}
