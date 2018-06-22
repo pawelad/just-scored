@@ -70,17 +70,28 @@ func ParseMatchEvents(match *worldcup.Match) {
 }
 
 // addGoal adds passed goal to DynamoDB
-func addGoal(goal *Goal) {
+func addGoal(goal *Goal) (added bool, err error) {
 	db := dynamo.New(session.New())
 	table := db.Table(os.Getenv("DYNAMODB_TABLE"))
 
-	log.Printf("Adding goal '%+v'", goal)
-
-	// TODO: Don't update existing goals
-	err := table.Put(goal).Run()
-
+	// Check if the goal is already in the DB
+	count, err := table.Get("EventID", goal.EventID).Count()
 	if err != nil {
-		// TODO: Proper error handling
 		log.Print(err)
 	}
+
+	if count != 0 {
+		log.Printf("Goal already added: '%+v'", goal)
+		return false, nil
+	}
+
+	log.Printf("Adding goal '%+v'", goal)
+	err = table.Put(goal).Run()
+
+	if err != nil {
+		log.Print(err)
+		return false, err
+	}
+
+	return true, nil
 }

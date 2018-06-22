@@ -12,6 +12,9 @@ adheres to [Semantic Versioning][semver].
 ## Changed
 - Save `CreatedAt` as UTC.
 
+## Fixed
+- Goals are not overridden if they already exist in the database (#2). 
+
 ## [v0.0.4][v0.0.4] - 2018-06-21
 ### Fixed
 - Better handle event types and correctly process penalty goals (#1).
