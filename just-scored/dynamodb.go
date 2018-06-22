@@ -17,8 +17,8 @@ func getDynamoDBTable() dynamo.Table {
 	return table
 }
 
-// addGoal adds passed goal to DynamoDB
-func addGoal(goal *Goal) (added bool, err error) {
+// AddGoal adds passed goal to DynamoDB
+func AddGoal(goal *Goal) (added bool, err error) {
 	table := getDynamoDBTable()
 
 	// Check if the goal is already in the DB
@@ -41,4 +41,21 @@ func addGoal(goal *Goal) (added bool, err error) {
 	}
 
 	return true, nil
+}
+
+// AddGoals adds passed goals to DynamoDB
+func AddGoals(goals []*Goal) (addedGoals int) {
+	for _, goal := range goals {
+		added, err := AddGoal(goal)
+
+		if err != nil {
+			log.Print(err)
+		}
+
+		if added {
+			addedGoals++
+		}
+	}
+
+	return addedGoals
 }

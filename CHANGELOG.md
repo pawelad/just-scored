@@ -10,6 +10,7 @@ adheres to [Semantic Versioning][semver].
 - Set `CreatedAt` as DynamoDB range key.
 
 ## Changed
+- Refactored and separated match parsing and DB logic.
 - Moved all goal and DynamoDB related code from `goal-checker` to
   `just-scored` package.
 - Save `CreatedAt` as UTC.

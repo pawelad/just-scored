@@ -38,11 +38,11 @@ func Handler() (Response, error) {
 		}, nil
 	}
 
-	// TODO: Return number of added goals?
-	justscored.ParseMatchEvents(match)
+	goals := justscored.GetMatchGoals(match)
+	addedGoals := justscored.AddGoals(goals)
 
 	return Response{
-		Message: fmt.Sprintf("Match %s was successfully parsed", match.FifaID),
+		Message: fmt.Sprintf("Match %s was successfully parsed and %d goals were added", match.FifaID, addedGoals),
 		Ok:      true,
 	}, nil
 }

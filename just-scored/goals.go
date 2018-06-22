@@ -27,11 +27,11 @@ type Goal struct {
 	NotificationSentAt interface{} // time.Time if sent, nil otherwise
 }
 
-// ParseMatchEvents parses passed worldcup.Match and adds all goals to DynamoDB
-func ParseMatchEvents(match *worldcup.Match) {
+// GetMatchGoals parses passed worldcup.Match and returns a list of its goals
+func GetMatchGoals(match *worldcup.Match) (goals []*Goal) {
 	log.Printf("Parsing match '%+v'", match)
 
-	goal := Goal{
+	goalDefaults := &Goal{
 		MatchID: match.FifaID,
 		Match:   fmt.Sprintf("%s - %s", match.AwayTeam.Code, match.HomeTeam.Code),
 		Score:   fmt.Sprintf("%d - %d", match.AwayTeam.Goals, match.HomeTeam.Goals),
@@ -41,27 +41,26 @@ func ParseMatchEvents(match *worldcup.Match) {
 		NotificationSentAt: nil,
 	}
 
-	for _, event := range match.AwayTeamEvents {
-		if event.IsGoal() {
-			goal.EventID = event.ID
-			goal.Player = event.Player
-			goal.PlayerTeam = match.AwayTeam.Code
-			goal.GoalTime = event.Time
-			goal.IsPenalty = event.IsPenalty()
+	teamEvents := map[string]*[]worldcup.TeamEvent{
+		match.AwayTeam.Code: &match.AwayTeamEvents,
+		match.HomeTeam.Code: &match.HomeTeamEvents,
+	}
 
-			addGoal(&goal)
+	for team, events := range teamEvents {
+		for _, event := range *events {
+			if event.IsGoal() {
+				goal := *goalDefaults
+
+				goal.EventID = event.ID
+				goal.Player = event.Player
+				goal.PlayerTeam = team
+				goal.GoalTime = event.Time
+				goal.IsPenalty = event.IsPenalty()
+
+				goals = append(goals, &goal)
+			}
 		}
 	}
 
-	for _, event := range match.HomeTeamEvents {
-		if event.IsGoal() {
-			goal.EventID = event.ID
-			goal.Player = event.Player
-			goal.PlayerTeam = match.HomeTeam.Code
-			goal.GoalTime = event.Time
-			goal.IsPenalty = event.IsPenalty()
-
-			addGoal(&goal)
-		}
-	}
+	return goals
 }
