@@ -24,12 +24,16 @@ If you never used it, then I'd recommend at least skimming through its
 locally are the [AWS credentials][serverless aws credentials] and the Slack
 webhook URL (exported as a `SLACK_WEBHOOK_URL` environment variable).
 
+Oh, one last thing - because of a AWS Go SDK [limitation][aws-sdk-go 489]
+you need to set `AWS_REGION` environment variable to a valid AWS region.
+
 So, all in all, it should look something like:
 
 ```shell
 $ # Setup
 $ npm install serverless -g
 $ serverless config credentials --provider aws --key FOO --secret BAR
+$ export AWS_REGION='us-east-1'
 $ export SLACK_WEBHOOK_URL='https://hooks.slack.com/services/...'
 $ git clone https://github.com/pawelad/just-scored && cd just-scored
 $ # Deployment
@@ -48,6 +52,7 @@ Developed and maintained by [Paweł Adamczak][pawelad].
 Released under [MIT License][license].
 
 
+[aws-sdk-go 489]: https://github.com/aws/aws-sdk-go/issues/489
 [github]: https://github.com/pawelad/just-scored
 [license]: https://github.com/pawelad/just-scored/blob/master/LICENSE
 [pawelad]: https://github.com/pawelad
