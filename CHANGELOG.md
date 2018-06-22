@@ -6,14 +6,11 @@ adheres to [Semantic Versioning][semver].
 
 ## [Unreleased][unreleased]
 
-## Added
-- Set `CreatedAt` as DynamoDB range key.
-
 ## Changed
-- Refactored and separated match parsing and DB logic.
+- Refactored and separated match parsing and DB logic code.
 - Moved all goal and DynamoDB related code from `goal-checker` to
   `just-scored` package.
-- Save `CreatedAt` as UTC.
+- Save `Goal.CreatedAt` field as UTC.
 
 ## Fixed
 - Goals are not overridden if they already exist in the database (#2). 
