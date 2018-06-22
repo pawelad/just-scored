@@ -1,3 +1,3 @@
 build:
 	go get -v -t -d ./...
-	env GOOS=linux go build -ldflags="-s -w" -o bin/goal-checker goal-checker/*.go
+	env GOOS=linux go build -ldflags="-s -w" -o bin/goal-checker goal-checker/main.go

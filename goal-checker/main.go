@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"github.com/aws/aws-lambda-go/lambda"
+	"github.com/pawelad/just-scored/just-scored"
 	"github.com/pawelad/just-scored/worldcup"
 )
 
@@ -20,6 +21,7 @@ func Handler() (Response, error) {
 	match, err := client.GetCurrentMatch()
 
 	if err != nil {
+		log.Print(err)
 		return Response{
 			Message: fmt.Sprintf("Error: %v", err),
 			Ok:      false,
@@ -37,7 +39,7 @@ func Handler() (Response, error) {
 	}
 
 	// TODO: Return number of added goals?
-	ParseMatchEvents(match)
+	justscored.ParseMatchEvents(match)
 
 	return Response{
 		Message: fmt.Sprintf("Match %s was successfully parsed", match.FifaID),
