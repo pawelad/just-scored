@@ -6,6 +6,9 @@ adheres to [Semantic Versioning][semver].
 
 ## [Unreleased][unreleased]
 
+## Changed
+- Got rid of `goal-checker.Response` struct.
+
 ## Fixed
 - Renamed `GetCurrentMatch` to `GetCurrentMatches`, as there can be multiple
   matches played at the same time (#3).

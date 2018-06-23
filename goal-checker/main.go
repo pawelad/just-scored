@@ -9,32 +9,23 @@ import (
 	"github.com/pawelad/just-scored/worldcup"
 )
 
-// Response holds Lambda response data
-type Response struct {
-	Message string `json:"message"`
-	Ok      bool   `json:"ok"`
-}
-
-// Handler checks for all goals in currently played World Cup match and saves them to DynamoDB
-func Handler() (Response, error) {
+// Handler is the AWS Lambda entry point.
+// It checks for all goals in currently played World Cup match and saves them to DynamoDB
+func Handler() (string, error) {
 	client := worldcup.NewClient()
 	matches, err := client.GetCurrentMatches()
 
 	if err != nil {
 		log.Print(err)
-		return Response{
-			Message: fmt.Sprintf("Error: %v", err),
-			Ok:      false,
-		}, nil
+
+		return fmt.Sprintf("Error: %v", err), err
 	}
 
 	if matches == nil {
 		msg := "No matches are being played right now"
 		log.Printf(msg)
-		return Response{
-			Message: msg,
-			Ok:      true,
-		}, nil
+
+		return msg, nil
 	}
 
 	addedGoals := 0
@@ -44,10 +35,7 @@ func Handler() (Response, error) {
 		log.Printf("Match %s was successfully parsed", match.FifaID)
 	}
 
-	return Response{
-		Message: fmt.Sprintf("%d goals were added", addedGoals),
-		Ok:      true,
-	}, nil
+	return fmt.Sprintf("%d goals were added", addedGoals), nil
 }
 
 func main() {
