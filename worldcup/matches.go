@@ -1,7 +1,7 @@
 package worldcup
 
 import (
-	"errors"
+	"log"
 	"time"
 )
 
@@ -30,42 +30,46 @@ type Match struct {
 	WinnerCode        string      `json:"winner_code"`
 }
 
-// GetCurrentMatch returns the current match, if a match is happening, otherwise nil
-func (c *Client) GetCurrentMatch() (*Match, error) {
+// GetCurrentMatches returns the currently played matches, if any are played
+// at the moment, otherwise nil
+func (c *Client) GetCurrentMatches() ([]*Match, error) {
 	request, err := c.NewRequest("GET", "matches/current")
 	if err != nil {
+		log.Print(err)
 		return nil, err
 	}
 
-	// The API returns a one-element list
 	var matches []*Match
 	_, err = c.Do(request, &matches)
 
 	if err != nil {
+		log.Print(err)
 		return nil, err
 	}
 
 	if len(matches) == 0 {
 		// No matches are played right now
 		return nil, nil
-	} else if len(matches) > 1 {
-		// TODO: A custom error?
-		err := errors.New("the API returned more then 1 current matches")
-		return nil, err
 	}
 
-	return matches[0], err
+	return matches, nil
 }
 
 // GetTodaysMatches returns today's matches, if any are happening, otherwise nil
 func (c *Client) GetTodaysMatches() ([]*Match, error) {
 	request, err := c.NewRequest("GET", "matches/today")
 	if err != nil {
+		log.Print(err)
 		return nil, err
 	}
 
 	var matches []*Match
 	_, err = c.Do(request, &matches)
+
+	if err != nil {
+		log.Print(err)
+		return nil, err
+	}
 
 	if len(matches) == 0 {
 		// No matches are played right now

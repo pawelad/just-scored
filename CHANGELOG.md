@@ -6,6 +6,10 @@ adheres to [Semantic Versioning][semver].
 
 ## [Unreleased][unreleased]
 
+## Fixed
+- Renamed `GetCurrentMatch` to `GetCurrentMatches`, as there can be multiple
+  matches played at the same time (#3).
+
 ## [v0.0.5][v0.0.5] - 2018-06-222
 ## Changed
 - Refactored and separated match parsing and DB logic code.

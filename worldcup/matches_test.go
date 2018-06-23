@@ -8,11 +8,11 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestGetCurrentMatchCorrect(t *testing.T) {
+func TestGetCurrentMatches(t *testing.T) {
 	client, mux, _, teardown := setup()
 	defer teardown()
 
-	// Correct response - no errors and a *Match type returned
+	// Correct response - no errors and a []*Match type returned
 	mux.HandleFunc("/matches/current", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
@@ -21,15 +21,17 @@ func TestGetCurrentMatchCorrect(t *testing.T) {
 		assert.Equal(t, r.Method, "GET")
 	})
 
-	match, err := client.GetCurrentMatch()
+	matches, err := client.GetCurrentMatches()
 
 	assert.Nil(t, err)
-	assert.NotNil(t, match)
-	assert.IsType(t, &Match{}, match)
-	assert.NotNil(t, match.FifaID)
+	assert.NotNil(t, matches)
+	assert.IsType(t, []*Match{}, matches)
+	for _, match := range matches {
+		assert.NotNil(t, match.FifaID)
+	}
 }
 
-func TestGetCurrentMatchEmpty(t *testing.T) {
+func TestGetCurrentMatchesEmpty(t *testing.T) {
 	client, mux, _, teardown := setup()
 	defer teardown()
 
@@ -42,36 +44,17 @@ func TestGetCurrentMatchEmpty(t *testing.T) {
 		assert.Equal(t, r.Method, "GET")
 	})
 
-	match, err := client.GetCurrentMatch()
+	matches, err := client.GetCurrentMatches()
 
 	assert.Nil(t, err)
-	assert.Nil(t, match)
-}
-
-func TestGetCurrentMatchMultiple(t *testing.T) {
-	client, mux, _, teardown := setup()
-	defer teardown()
-
-	// Multiple items - an error and nil returned
-	mux.HandleFunc("/matches/current", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusOK)
-		fmt.Fprint(w, `[{"fifa_id":1},{"fifa_id":2}]`)
-
-		assert.Equal(t, r.Method, "GET")
-	})
-
-	match, err := client.GetCurrentMatch()
-
-	assert.NotNil(t, err)
-	assert.Nil(t, match)
+	assert.Nil(t, matches)
 }
 
 func TestGetTodaysMatchesCorrect(t *testing.T) {
 	client, mux, _, teardown := setup()
 	defer teardown()
 
-	// Correct response - no errors and a []*Match type returned
+	// Expected response - no errors and a []*Match type returned
 	mux.HandleFunc("/matches/today", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
@@ -85,7 +68,9 @@ func TestGetTodaysMatchesCorrect(t *testing.T) {
 	assert.Nil(t, err)
 	assert.NotNil(t, matches)
 	assert.IsType(t, []*Match{}, matches)
-	assert.NotNil(t, matches[0].FifaID)
+	for _, match := range matches {
+		assert.NotNil(t, match.FifaID)
+	}
 }
 
 func TestGetTodaysMatchesEmpty(t *testing.T) {

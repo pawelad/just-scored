@@ -18,7 +18,7 @@ type Response struct {
 // Handler checks for all goals in currently played World Cup match and saves them to DynamoDB
 func Handler() (Response, error) {
 	client := worldcup.NewClient()
-	match, err := client.GetCurrentMatch()
+	matches, err := client.GetCurrentMatches()
 
 	if err != nil {
 		log.Print(err)
@@ -28,21 +28,24 @@ func Handler() (Response, error) {
 		}, nil
 	}
 
-	if match == nil {
-		msg := "No match is being played right now"
+	if matches == nil {
+		msg := "No matches are being played right now"
 		log.Printf(msg)
-
 		return Response{
 			Message: msg,
 			Ok:      true,
 		}, nil
 	}
 
-	goals := justscored.GetMatchGoals(match)
-	addedGoals := justscored.AddGoals(goals)
+	addedGoals := 0
+	for _, match := range matches {
+		goals := justscored.GetMatchGoals(match)
+		addedGoals += justscored.AddGoals(goals)
+		log.Printf("Match %s was successfully parsed", match.FifaID)
+	}
 
 	return Response{
-		Message: fmt.Sprintf("Match %s was successfully parsed and %d goals were added", match.FifaID, addedGoals),
+		Message: fmt.Sprintf("%d goals were added", addedGoals),
 		Ok:      true,
 	}, nil
 }
