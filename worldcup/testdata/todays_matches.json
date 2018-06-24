@@ -1,80 +1,584 @@
 [
     {
-        "venue": "Saransk",
-        "location": "Mordovia Arena",
-        "status": "future",
-        "time": null,
-        "fifa_id": "300331550",
-        "home_team_statistics": null,
-        "away_team_statistics": null,
-        "datetime": "2018-06-19T12:00:00Z",
-        "last_event_update_at": null,
-        "last_score_update_at": "2018-06-19T00:38:52Z",
-        "home_team": {
-            "country": "Colombia",
-            "code": "COL",
-            "goals": 0
+      "venue": "Nizhny Novgorod",
+      "location": "Nizhny Novgorod Stadium",
+      "status": "completed",
+      "time": "full-time",
+      "fifa_id": "300331546",
+      "home_team_statistics": {
+        "attempts_on_goal": 12,
+        "on_target": 7,
+        "off_target": 3,
+        "blocked": 2,
+        "woodwork": 0,
+        "corners": 3,
+        "offsides": 3,
+        "ball_possession": 58,
+        "pass_accuracy": 92,
+        "num_passes": 568,
+        "passes_completed": 523,
+        "distance_covered": 97,
+        "balls_recovered": 24,
+        "tackles": 1,
+        "clearances": 11,
+        "yellow_cards": 1,
+        "red_cards": 0,
+        "fouls_committed": null,
+        "country": "England"
+      },
+      "away_team_statistics": {
+        "attempts_on_goal": 6,
+        "on_target": 2,
+        "off_target": 4,
+        "blocked": 0,
+        "woodwork": 0,
+        "corners": 2,
+        "offsides": 0,
+        "ball_possession": 42,
+        "pass_accuracy": 87,
+        "num_passes": 387,
+        "passes_completed": 335,
+        "distance_covered": 88,
+        "balls_recovered": 23,
+        "tackles": 3,
+        "clearances": 10,
+        "yellow_cards": 3,
+        "red_cards": 0,
+        "fouls_committed": null,
+        "country": "Panama"
+      },
+      "home_team_country": "England",
+      "away_team_country": "Panama",
+      "datetime": "2018-06-24T12:00:00Z",
+      "winner": "England",
+      "winner_code": "ENG",
+      "home_team": {
+        "country": "England",
+        "code": "ENG",
+        "goals": 6
+      },
+      "away_team": {
+        "country": "Panama",
+        "code": "PAN",
+        "goals": 1
+      },
+      "home_team_events": [
+        {
+          "id": 520,
+          "type_of_event": "goal",
+          "player": "John STONES",
+          "time": "8'"
         },
-        "away_team": {
-            "country": "Japan",
-            "code": "JPN",
-            "goals": 0
+        {
+          "id": 522,
+          "type_of_event": "goal-penalty",
+          "player": "Harry KANE",
+          "time": "22'"
         },
-        "winner": null,
-        "winner_code": null,
-        "home_team_events": [],
-        "away_team_events": []
+        {
+          "id": 523,
+          "type_of_event": "yellow-card",
+          "player": "Ruben LOFTUS-CHEEK",
+          "time": "24'"
+        },
+        {
+          "id": 524,
+          "type_of_event": "goal",
+          "player": "Jesse  LINGARD",
+          "time": "36'"
+        },
+        {
+          "id": 525,
+          "type_of_event": "goal",
+          "player": "John STONES",
+          "time": "40'"
+        },
+        {
+          "id": 526,
+          "type_of_event": "goal-penalty",
+          "player": "Harry KANE",
+          "time": "45'+1'"
+        },
+        {
+          "id": 529,
+          "type_of_event": "goal",
+          "player": "Harry KANE",
+          "time": "62'"
+        },
+        {
+          "id": 532,
+          "type_of_event": "substitution-out",
+          "player": "Jesse  LINGARD",
+          "time": "63'"
+        },
+        {
+          "id": 533,
+          "type_of_event": "substitution-out",
+          "player": "Harry KANE",
+          "time": "63'"
+        },
+        {
+          "id": 534,
+          "type_of_event": "substitution-in",
+          "player": "Jamie VARDY",
+          "time": "63'"
+        },
+        {
+          "id": 535,
+          "type_of_event": "substitution-in",
+          "player": "Fabian DELPH",
+          "time": "63'"
+        },
+        {
+          "id": 538,
+          "type_of_event": "substitution-out",
+          "player": "Kieran TRIPPIER",
+          "time": "70'"
+        },
+        {
+          "id": 539,
+          "type_of_event": "substitution-in",
+          "player": "Danny ROSE",
+          "time": "70'"
+        }
+      ],
+      "away_team_events": [
+        {
+          "id": 521,
+          "type_of_event": "yellow-card",
+          "player": "Armando COOPER",
+          "time": "10'"
+        },
+        {
+          "id": 528,
+          "type_of_event": "yellow-card",
+          "player": "Fidel ESCOBAR",
+          "time": "44'"
+        },
+        {
+          "id": 527,
+          "type_of_event": "yellow-card",
+          "player": "Fidel ESCOBAR",
+          "time": "45'"
+        },
+        {
+          "id": 530,
+          "type_of_event": "substitution-out",
+          "player": "Anibal GODOY",
+          "time": "62'"
+        },
+        {
+          "id": 531,
+          "type_of_event": "substitution-in",
+          "player": "Ricardo AVILA",
+          "time": "62'"
+        },
+        {
+          "id": 536,
+          "type_of_event": "substitution-out",
+          "player": "Edgar BARCENAS",
+          "time": "69'"
+        },
+        {
+          "id": 537,
+          "type_of_event": "substitution-in",
+          "player": "Abdiel ARROYO",
+          "time": "69'"
+        },
+        {
+          "id": 540,
+          "type_of_event": "substitution-out",
+          "player": "Gabriel GOMEZ",
+          "time": "69'"
+        },
+        {
+          "id": 541,
+          "type_of_event": "substitution-in",
+          "player": "Felipe BALOY",
+          "time": "69'"
+        },
+        {
+          "id": 542,
+          "type_of_event": "yellow-card",
+          "player": "Michael MURILLO",
+          "time": "72'"
+        },
+        {
+          "id": 543,
+          "type_of_event": "goal",
+          "player": "Felipe BALOY",
+          "time": "78'"
+        }
+      ],
+      "last_event_update_at": "2018-06-24T13:53:42Z",
+      "last_score_update_at": "2018-06-24T13:53:42Z"
     },
     {
-        "venue": "Moscow",
-        "location": "Spartak Stadium",
-        "status": "future",
-        "time": null,
-        "fifa_id": "300331545",
-        "home_team_statistics": null,
-        "away_team_statistics": null,
-        "datetime": "2018-06-19T15:00:00Z",
-        "last_event_update_at": null,
-        "last_score_update_at": "2018-06-19T00:38:52Z",
-        "home_team": {
-            "country": "Poland",
-            "code": "POL",
-            "goals": 0
+      "venue": "Ekaterinburg",
+      "location": "Ekaterinburg Arena",
+      "status": "completed",
+      "time": "full-time",
+      "fifa_id": "300331505",
+      "home_team_statistics": {
+        "attempts_on_goal": 7,
+        "on_target": 3,
+        "off_target": 2,
+        "blocked": 2,
+        "woodwork": 1,
+        "corners": 2,
+        "offsides": 2,
+        "ball_possession": 53,
+        "pass_accuracy": 83,
+        "num_passes": 441,
+        "passes_completed": 367,
+        "distance_covered": 104,
+        "balls_recovered": 37,
+        "tackles": 6,
+        "clearances": 31,
+        "yellow_cards": 1,
+        "red_cards": 0,
+        "fouls_committed": null,
+        "country": "Japan"
+      },
+      "away_team_statistics": {
+        "attempts_on_goal": 12,
+        "on_target": 7,
+        "off_target": 4,
+        "blocked": 1,
+        "woodwork": 0,
+        "corners": 5,
+        "offsides": 4,
+        "ball_possession": 47,
+        "pass_accuracy": 79,
+        "num_passes": 337,
+        "passes_completed": 266,
+        "distance_covered": 101,
+        "balls_recovered": 42,
+        "tackles": 4,
+        "clearances": 27,
+        "yellow_cards": 3,
+        "red_cards": 0,
+        "fouls_committed": null,
+        "country": "Senegal"
+      },
+      "home_team_country": "Japan",
+      "away_team_country": "Senegal",
+      "datetime": "2018-06-24T15:00:00Z",
+      "winner": "Draw",
+      "winner_code": "Draw",
+      "home_team": {
+        "country": "Japan",
+        "code": "JPN",
+        "goals": 2
+      },
+      "away_team": {
+        "country": "Senegal",
+        "code": "SEN",
+        "goals": 2
+      },
+      "home_team_events": [
+        {
+          "id": 545,
+          "type_of_event": "goal",
+          "player": "Takashi INUI",
+          "time": "34'"
         },
-        "away_team": {
-            "country": "Senegal",
-            "code": "SEN",
-            "goals": 0
+        {
+          "id": 549,
+          "type_of_event": "yellow-card",
+          "player": "Takashi INUI",
+          "time": "68'"
         },
-        "winner": null,
-        "winner_code": null,
-        "home_team_events": [],
-        "away_team_events": []
+        {
+          "id": 551,
+          "type_of_event": "substitution-out",
+          "player": "Shinji KAGAWA",
+          "time": "72'"
+        },
+        {
+          "id": 552,
+          "type_of_event": "substitution-in",
+          "player": "Keisuke HONDA",
+          "time": "72'"
+        },
+        {
+          "id": 553,
+          "type_of_event": "substitution-out",
+          "player": "Genki HARAGUCHI",
+          "time": "75'"
+        },
+        {
+          "id": 554,
+          "type_of_event": "substitution-in",
+          "player": "Shinji OKAZAKI",
+          "time": "75'"
+        },
+        {
+          "id": 555,
+          "type_of_event": "goal",
+          "player": "Keisuke HONDA",
+          "time": "78'"
+        },
+        {
+          "id": 560,
+          "type_of_event": "substitution-out",
+          "player": "Takashi INUI",
+          "time": "87'"
+        },
+        {
+          "id": 561,
+          "type_of_event": "substitution-in",
+          "player": "Takashi USAMI",
+          "time": "87'"
+        },
+        {
+          "id": 564,
+          "type_of_event": "yellow-card",
+          "player": "Makoto HASEBE",
+          "time": "90'+4'"
+        }
+      ],
+      "away_team_events": [
+        {
+          "id": 544,
+          "type_of_event": "goal",
+          "player": "Sadio MANE",
+          "time": "11'"
+        },
+        {
+          "id": 546,
+          "type_of_event": "yellow-card",
+          "player": "Mbaye NIANG",
+          "time": "59'"
+        },
+        {
+          "id": 547,
+          "type_of_event": "substitution-out",
+          "player": "Alfred NDIAYE",
+          "time": "65'"
+        },
+        {
+          "id": 548,
+          "type_of_event": "substitution-in",
+          "player": "Cheikhou KOUYATE",
+          "time": "65'"
+        },
+        {
+          "id": 550,
+          "type_of_event": "goal",
+          "player": "Moussa WAGUE",
+          "time": "71'"
+        },
+        {
+          "id": 556,
+          "type_of_event": "substitution-out",
+          "player": "Pape Alioune NDIAYE",
+          "time": "81'"
+        },
+        {
+          "id": 557,
+          "type_of_event": "substitution-in",
+          "player": "Cheikh NDOYE",
+          "time": "81'"
+        },
+        {
+          "id": 558,
+          "type_of_event": "substitution-out",
+          "player": "Mbaye NIANG",
+          "time": "86'"
+        },
+        {
+          "id": 559,
+          "type_of_event": "substitution-in",
+          "player": "Mame DIOUF",
+          "time": "86'"
+        },
+        {
+          "id": 562,
+          "type_of_event": "yellow-card",
+          "player": "Youssouf SABALY",
+          "time": "90'"
+        },
+        {
+          "id": 563,
+          "type_of_event": "yellow-card",
+          "player": "Cheikh NDOYE",
+          "time": "90'+1'"
+        }
+      ],
+      "last_event_update_at": "2018-06-24T16:51:36Z",
+      "last_score_update_at": "2018-06-24T16:51:36Z"
     },
     {
-        "venue": "St. Petersburg",
-        "location": "Saint Petersburg Stadium",
-        "status": "future",
-        "time": null,
-        "fifa_id": "300331495",
-        "home_team_statistics": null,
-        "away_team_statistics": null,
-        "datetime": "2018-06-19T18:00:00Z",
-        "last_event_update_at": null,
-        "last_score_update_at": "2018-06-19T00:38:52Z",
-        "home_team": {
-            "country": "Russia",
-            "code": "RUS",
-            "goals": 0
+      "venue": "Kazan",
+      "location": "Kazan Arena",
+      "status": "completed",
+      "time": "full-time",
+      "fifa_id": "300331508",
+      "home_team_statistics": {
+        "attempts_on_goal": 9,
+        "on_target": 2,
+        "off_target": 3,
+        "blocked": 4,
+        "woodwork": 0,
+        "corners": 7,
+        "offsides": 1,
+        "ball_possession": 46,
+        "pass_accuracy": 77,
+        "num_passes": 422,
+        "passes_completed": 327,
+        "distance_covered": 105,
+        "balls_recovered": 55,
+        "tackles": 20,
+        "clearances": 33,
+        "yellow_cards": 2,
+        "red_cards": 0,
+        "fouls_committed": null,
+        "country": "Poland"
+      },
+      "away_team_statistics": {
+        "attempts_on_goal": 13,
+        "on_target": 3,
+        "off_target": 5,
+        "blocked": 5,
+        "woodwork": 0,
+        "corners": 5,
+        "offsides": 1,
+        "ball_possession": 54,
+        "pass_accuracy": 80,
+        "num_passes": 487,
+        "passes_completed": 392,
+        "distance_covered": 107,
+        "balls_recovered": 49,
+        "tackles": 16,
+        "clearances": 27,
+        "yellow_cards": 0,
+        "red_cards": 0,
+        "fouls_committed": null,
+        "country": "Colombia"
+      },
+      "home_team_country": "Poland",
+      "away_team_country": "Colombia",
+      "datetime": "2018-06-24T18:00:00Z",
+      "winner": "Colombia",
+      "winner_code": "COL",
+      "home_team": {
+        "country": "Poland",
+        "code": "POL",
+        "goals": 0
+      },
+      "away_team": {
+        "country": "Colombia",
+        "code": "COL",
+        "goals": 3
+      },
+      "home_team_events": [
+        {
+          "id": 568,
+          "type_of_event": "substitution-out",
+          "player": "Dawid KOWNACKI",
+          "time": "57'"
         },
-        "away_team": {
-            "country": "Egypt",
-            "code": "EGY",
-            "goals": 0
+        {
+          "id": 569,
+          "type_of_event": "substitution-in",
+          "player": "Kamil GROSICKI",
+          "time": "57'"
         },
-        "winner": null,
-        "winner_code": null,
-        "home_team_events": [],
-        "away_team_events": []
+        {
+          "id": 570,
+          "type_of_event": "yellow-card",
+          "player": "Jan BEDNAREK",
+          "time": "61'"
+        },
+        {
+          "id": 572,
+          "type_of_event": "substitution-out",
+          "player": "Bartosz BERESZYNSKI",
+          "time": "72'"
+        },
+        {
+          "id": 573,
+          "type_of_event": "substitution-in",
+          "player": "Lukasz TEODORCZYK",
+          "time": "72'"
+        },
+        {
+          "id": 579,
+          "type_of_event": "substitution-out",
+          "player": "Michal PAZDAN",
+          "time": "80'"
+        },
+        {
+          "id": 580,
+          "type_of_event": "substitution-in",
+          "player": "Kamil GLIK",
+          "time": "80'"
+        },
+        {
+          "id": 581,
+          "type_of_event": "yellow-card",
+          "player": "Jacek GORALSKI",
+          "time": "85'"
+        }
+      ],
+      "away_team_events": [
+        {
+          "id": 565,
+          "type_of_event": "substitution-out",
+          "player": "Abel AGUILAR",
+          "time": "32'"
+        },
+        {
+          "id": 566,
+          "type_of_event": "substitution-in",
+          "player": "Mateus URIBE",
+          "time": "32'"
+        },
+        {
+          "id": 567,
+          "type_of_event": "goal",
+          "player": "Yerry MINA",
+          "time": "40'"
+        },
+        {
+          "id": 571,
+          "type_of_event": "goal",
+          "player": "Radamel FALCAO",
+          "time": "70'"
+        },
+        {
+          "id": 574,
+          "type_of_event": "substitution-out",
+          "player": "Juan QUINTERO",
+          "time": "73'"
+        },
+        {
+          "id": 575,
+          "type_of_event": "substitution-in",
+          "player": "Jefferson  LERMA",
+          "time": "73'"
+        },
+        {
+          "id": 576,
+          "type_of_event": "goal",
+          "player": "Juan CUADRADO",
+          "time": "75'"
+        },
+        {
+          "id": 577,
+          "type_of_event": "substitution-out",
+          "player": "Radamel FALCAO",
+          "time": "78'"
+        },
+        {
+          "id": 578,
+          "type_of_event": "substitution-in",
+          "player": "Carlos BACCA",
+          "time": "78'"
+        }
+      ],
+      "last_event_update_at": "2018-06-24T19:55:35Z",
+      "last_score_update_at": "2018-06-24T19:55:35Z"
     }
-]
+  ]

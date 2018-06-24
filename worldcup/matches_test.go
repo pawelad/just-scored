@@ -16,7 +16,7 @@ func TestGetCurrentMatches(t *testing.T) {
 	mux.HandleFunc("/matches/current", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		fmt.Fprint(w, fixture("current_match.json"))
+		fmt.Fprint(w, fixture("current_matches.json"))
 
 		assert.Equal(t, r.Method, "GET")
 	})
