@@ -88,8 +88,8 @@ func Handler(ctx context.Context, event events.DynamoDBEvent) {
 	for _, url := range slackWebhookURLs {
 		for _, goal := range goals {
 			log.Printf("Sending goal %d Slack notification to %v", goal.EventID, url)
-			// TODO: Use channels to get potential errors
-			go SendGoalNotification(url, goal)
+			// TODO: Use goroutines and channels
+			SendGoalNotification(url, goal)
 		}
 	}
 }
