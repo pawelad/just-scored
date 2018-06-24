@@ -6,6 +6,9 @@ adheres to [Semantic Versioning][semver].
 
 ## [Unreleased][unreleased]
 
+## Added
+- Added `goal-notifier` Lambda function.
+
 ## Changed
 - Got rid of `goal-checker.Response` struct.
 

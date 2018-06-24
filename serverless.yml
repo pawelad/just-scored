@@ -30,6 +30,8 @@ functions:
     events:
       # Every minute 12am to 2pm Moscow time (UTC+3)
       - schedule: cron(* 9-23 * * ? *)
+  goal-notifier:
+    handler: bin/goal-notifier
 
 resources:
   Resources:

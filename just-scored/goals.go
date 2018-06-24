@@ -11,19 +11,43 @@ import (
 // Goal holds all relevant World Cup goal information,
 // based on worldcup.Match and worldcup.TeamEvent structure
 type Goal struct {
-	EventID    int    // Hash key
+	EventID    int    // e.g. 123 (Hash Key)
 	Player     string // e.g. "Bender RODRIGUEZ"
 	PlayerTeam string // e.g. "FOO"
 	GoalTime   string // e.g. "90'+2'"
 	IsPenalty  bool
 
-	MatchID string
-	Match   string // e.g. "FOO - BAR"
-	Score   string // e.g. "0 - 0"
+	MatchID    string // e.g. "123456"
+	MatchScore string // e.g. "FOO 0 - 1 BAR"
 
-	CreatedAt          time.Time   // Range key
-	Processed          bool        // Whether the notification was sent
+	CreatedAt          time.Time
+	Processed          bool
 	NotificationSentAt interface{} // time.Time if sent, nil otherwise
+}
+
+// String formats the goal into a human readable string
+func (goal Goal) String() string {
+	// TODO: Take penalties and own goals into consideration
+	message := ":soccer: *%v* (%v) just scored for *%v*\n\n"
+	message += ":joystick: %v"
+	message = fmt.Sprintf(message, goal.Player, goal.PlayerTeam, goal.MatchScore)
+
+	return message
+}
+
+// WasProcessed updates the goal DynamoDB processed status
+func (goal Goal) WasProcessed() error {
+	table := getDynamoDBTable()
+
+	err := table.Update("EventID", goal.EventID).
+		Set("Processed", true).
+		Run()
+
+	if err != nil {
+		log.Print(err)
+	}
+
+	return err
 }
 
 // GetMatchGoals parses passed worldcup.Match and returns a list of its goals
@@ -32,8 +56,11 @@ func GetMatchGoals(match *worldcup.Match) (goals []*Goal) {
 
 	goalDefaults := &Goal{
 		MatchID: match.FifaID,
-		Match:   fmt.Sprintf("%s - %s", match.AwayTeam.Code, match.HomeTeam.Code),
-		Score:   fmt.Sprintf("%d - %d", match.AwayTeam.Goals, match.HomeTeam.Goals),
+		MatchScore: fmt.Sprintf(
+			"%s %d - %d %s",
+			match.AwayTeam.Code, match.AwayTeam.Goals,
+			match.HomeTeam.Goals, match.HomeTeam.Code,
+		),
 
 		CreatedAt:          time.Now().UTC(),
 		Processed:          false,
