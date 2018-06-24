@@ -22,10 +22,8 @@ Given the serverless nature of this project and usage of the awesome
 If you never used it, then I'd recommend at least skimming through its
 [AWS docs][serverless aws docs], but the only thing you *need* to set up
 locally are the [AWS credentials][serverless aws credentials] and the Slack
-webhook URL (exported as a `SLACK_WEBHOOK_URL` environment variable).
-
-Oh, one last thing - because of a AWS Go SDK [limitation][aws-sdk-go 489]
-you need to set `AWS_REGION` environment variable to a valid AWS region.
+webhook URL exported as a `SLACK_WEBHOOK_URLS` environment variable
+(it supports multiple comma separated URLs).
 
 So, all in all, it should look something like:
 
@@ -33,8 +31,7 @@ So, all in all, it should look something like:
 $ # Setup
 $ npm install serverless -g
 $ serverless config credentials --provider aws --key FOO --secret BAR
-$ export AWS_REGION='us-east-1'
-$ export SLACK_WEBHOOK_URL='https://hooks.slack.com/services/...'
+$ export SLACK_WEBHOOK_URLS='https://hooks.slack.com/services/...'
 $ git clone https://github.com/pawelad/just-scored && cd just-scored
 $ # Deployment
 $ serverless deploy
