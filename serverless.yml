@@ -7,7 +7,6 @@ provider:
   region: ${opt:region, 'us-east-1'}
   environment:
     DYNAMODB_TABLE: ${self:service}-${self:provider.stage}
-    SLACK_WEBHOOK_URLS: ${env:SLACK_WEBHOOK_URLS}
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -22,12 +21,16 @@ package:
 
 functions:
   goal-checker:
+    description: Check for recently scored World Cup goals and add them to DynamoDB
     handler: bin/goal-checker
     events:
       # Every minute 12am to 2pm Moscow time (UTC+3)
       - schedule: cron(* 9-23 * * ? *)
   goal-notifier:
+    description: Send Slack notifications about recently scored World Cup goals
     handler: bin/goal-notifier
+    environment:
+      SLACK_WEBHOOK_URLS: ${env:SLACK_WEBHOOK_URLS}
     events:
       - stream:
           type: dynamodb
