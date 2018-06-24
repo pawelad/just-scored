@@ -52,7 +52,7 @@ func SendGoalNotification(url string, goal *justscored.Goal) (bool, error) {
 	}
 
 	// Update goal processed status
-	err = goal.SetValue("Processed", true)
+	err = goal.SetDBValue("Processed", true)
 	if err != nil {
 		log.Print(err)
 	}
@@ -70,24 +70,31 @@ func Handler(ctx context.Context, event events.DynamoDBEvent) {
 
 	// Convert DynamoDB event to a list of goals
 	for _, record := range event.Records {
-		log.Printf("Processing request data for event ID %s, type %s.", record.EventID, record.EventName)
+		log.Printf("Processing request data for event ID '%s' (%s).", record.EventID, record.EventName)
 
-		goal := justscored.Goal{}
+		// We only care about inserts (and *maybe* updates)
+		if record.EventName == string(events.DynamoDBOperationTypeRemove) {
+			return
+		}
+
+		var goal justscored.Goal
 		err := UnmarshalStreamImage(record.Change.NewImage, &goal)
 		if err != nil {
 			log.Print(err)
 		}
 
 		// Only add non-processed goals
-		if goal.Processed == false {
+		if goal.EventID != 0 && goal.Processed == false {
 			goals = append(goals, &goal)
 		}
 	}
 
 	// Send all goal notifications to all provided Slack webhook URLs
 	for _, url := range slackWebhookURLs {
+		log.Printf("Slack Webhook URL: '%v'", url)
+
 		for _, goal := range goals {
-			log.Printf("Sending goal %d Slack notification to %v", goal.EventID, url)
+			log.Printf("Sending notification for goal '%v'", goal)
 			// TODO: Use goroutines and channels
 			SendGoalNotification(url, goal)
 		}
