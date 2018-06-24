@@ -33,7 +33,7 @@ func Handler() (string, error) {
 	for _, match := range matches {
 		goals := justscored.GetMatchGoals(match)
 		addedGoals += justscored.AddGoals(goals)
-		log.Printf("Match '%s' was successfully parsed", match.FifaID)
+		log.Printf("Match '%s' was processed", match.FifaID)
 	}
 
 	return fmt.Sprintf("%d goals were added", addedGoals), nil

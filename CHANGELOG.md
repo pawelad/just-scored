@@ -6,6 +6,12 @@ adheres to [Semantic Versioning][semver].
 
 ## [Unreleased][unreleased]
 
+## Changed
+- Restructured `justscored.Goal`.
+
+## Fixed
+- Properly handle own goals (#4).
+
 ## [v0.0.6][v0.0.6] - 2018-06-24
 ## Added
 - Added `goal-notifier` Lambda function.
