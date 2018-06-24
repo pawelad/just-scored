@@ -6,7 +6,6 @@ provider:
   stage: ${opt:stage, 'dev'}
   region: ${opt:region, 'us-east-1'}
   environment:
-    AWS_REGION: ${self:provider.region}
     DYNAMODB_TABLE: ${self:service}-${self:provider.stage}
     SLACK_WEBHOOK_URLS: ${env:SLACK_WEBHOOK_URLS}
   iamRoleStatements:
