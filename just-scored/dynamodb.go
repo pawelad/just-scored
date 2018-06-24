@@ -53,11 +53,7 @@ func AddGoal(goal *Goal) (added bool, err error) {
 // AddGoals adds passed goals to DynamoDB
 func AddGoals(goals []*Goal) (addedGoals int) {
 	for _, goal := range goals {
-		added, err := AddGoal(goal)
-
-		if err != nil {
-			log.Print(err)
-		}
+		added, _ := AddGoal(goal)
 
 		if added {
 			addedGoals++

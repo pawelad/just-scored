@@ -25,29 +25,25 @@ type Goal struct {
 	NotificationSentAt interface{} // time.Time if sent, nil otherwise
 }
 
-// String formats the goal into a human readable string
-func (goal Goal) String() string {
+// SetValue updates goal DynamoDB field with passed value
+func (goal Goal) SetValue(field string, value interface{}) error {
+	table := getDynamoDBTable()
+
+	err := table.Update("EventID", goal.EventID).
+		Set(field, value).
+		Run()
+
+	return err
+}
+
+// ToSlackMessage formats goal data to a Slack compatible string format
+func (goal Goal) ToSlackMessage() string {
 	// TODO: Take penalties and own goals into consideration
 	message := ":soccer: *%v* (%v) just scored for *%v*\n\n"
 	message += ":joystick: %v"
 	message = fmt.Sprintf(message, goal.Player, goal.PlayerTeam, goal.MatchScore)
 
 	return message
-}
-
-// WasProcessed updates the goal DynamoDB processed status
-func (goal Goal) WasProcessed() error {
-	table := getDynamoDBTable()
-
-	err := table.Update("EventID", goal.EventID).
-		Set("Processed", true).
-		Run()
-
-	if err != nil {
-		log.Print(err)
-	}
-
-	return err
 }
 
 // GetMatchGoals parses passed worldcup.Match and returns a list of its goals

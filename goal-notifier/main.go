@@ -36,13 +36,12 @@ func UnmarshalStreamImage(attribute map[string]events.DynamoDBAttributeValue, ou
 
 }
 
-// TODO: Should this be a Goal method?
-// SendSlackMessage sends a scored goal notification to passed webhook URL
-func SendSlackMessage(url string, goal *justscored.Goal) (bool, error) {
+// SendGoalNotification sends a scored goal notification to passed Slack webhook URL
+func SendGoalNotification(url string, goal *justscored.Goal) (bool, error) {
 	slackWebhook := slack.NewWebHook(url)
 
 	webhookPayload := slack.WebHookPostPayload{
-		Text:      goal.String(),
+		Text:      goal.ToSlackMessage(),
 		IconEmoji: ":soccer:",
 	}
 
@@ -53,7 +52,7 @@ func SendSlackMessage(url string, goal *justscored.Goal) (bool, error) {
 	}
 
 	// Update goal processed status
-	err = goal.WasProcessed()
+	err = goal.SetValue("Processed", true)
 	if err != nil {
 		log.Print(err)
 	}
@@ -90,7 +89,7 @@ func Handler(ctx context.Context, event events.DynamoDBEvent) {
 		for _, goal := range goals {
 			log.Printf("Sending goal %d Slack notification to %v", goal.EventID, url)
 			// TODO: Use channels to get potential errors
-			go SendSlackMessage(url, goal)
+			go SendGoalNotification(url, goal)
 		}
 	}
 }
