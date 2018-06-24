@@ -30,10 +30,10 @@ type Match struct {
 	WinnerCode        string      `json:"winner_code"`
 }
 
-// GetCurrentMatches returns the currently played matches, if any are played
-// at the moment, otherwise nil
-func (c *Client) GetCurrentMatches() ([]*Match, error) {
-	request, err := c.NewRequest("GET", "matches/current")
+// getMultipleMatches is a helper method that processes an API endpoint
+// that returns a list of matches
+func (c *Client) getMultipleMatches(endpoint string) ([]*Match, error) {
+	request, err := c.NewRequest("GET", endpoint)
 	if err != nil {
 		log.Print(err)
 		return nil, err
@@ -55,26 +55,14 @@ func (c *Client) GetCurrentMatches() ([]*Match, error) {
 	return matches, nil
 }
 
-// GetTodaysMatches returns today's matches, if any are happening, otherwise nil
+// GetCurrentMatches returns the currently played matches,
+// if any are played at the moment, otherwise nil
+func (c *Client) GetCurrentMatches() ([]*Match, error) {
+	return c.getMultipleMatches("matches/current")
+}
+
+// GetTodaysMatches returns all today's matches,
+// if any are happening, otherwise nil
 func (c *Client) GetTodaysMatches() ([]*Match, error) {
-	request, err := c.NewRequest("GET", "matches/today")
-	if err != nil {
-		log.Print(err)
-		return nil, err
-	}
-
-	var matches []*Match
-	_, err = c.Do(request, &matches)
-
-	if err != nil {
-		log.Print(err)
-		return nil, err
-	}
-
-	if len(matches) == 0 {
-		// No matches are played right now
-		return nil, nil
-	}
-
-	return matches, err
+	return c.getMultipleMatches("matches/today")
 }

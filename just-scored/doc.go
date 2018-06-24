@@ -1,3 +1,3 @@
-// Package justscored contains code necessary to add scored goals to
-// DynamoDB and notify a Slack channel about them
+// Package justscored contains shared DynamoDB code used by goal-checker
+// and goal-notifier Lambda functions.
 package justscored

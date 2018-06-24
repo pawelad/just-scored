@@ -15,8 +15,7 @@ type Client struct {
 	httpClient *http.Client
 }
 
-// NewClient creates a new World Cup API client.
-// If a nil httpClient is provided, http.DefaultClient will be used.
+// NewClient creates a new World Cup API client
 func NewClient() *Client {
 	baseURL, _ := url.Parse(apiURL)
 
@@ -43,9 +42,9 @@ func (c *Client) NewRequest(method, endpoint string) (*http.Request, error) {
 	return request, nil
 }
 
-// Do sends an API request and returns the API response. The API response is
-// JSON decoded and stored in the value pointed to by v, or returned as an
-// error if an API error has occurred.
+// Do sends an API request and returns the API response.
+// The API response is JSON decoded and stored in the value pointed to by v,
+// or returned as an error if an API error has occurred.
 func (c *Client) Do(request *http.Request, v interface{}) (*http.Response, error) {
 	response, err := c.httpClient.Do(request)
 	if err != nil {

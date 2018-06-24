@@ -27,7 +27,7 @@ type Goal struct {
 
 // SetDBValue updates goal DynamoDB field with passed value
 func (goal Goal) SetDBValue(field string, value interface{}) error {
-	// TODO: Multiple fields
+	// TODO: Process multiple fields
 	table := getDynamoDBTable()
 
 	err := table.Update("EventID", goal.EventID).
@@ -40,8 +40,8 @@ func (goal Goal) SetDBValue(field string, value interface{}) error {
 // ToSlackMessage formats goal data to a Slack compatible string format
 func (goal Goal) ToSlackMessage() string {
 	// TODO: Take penalties and own goals into consideration
-	message := ":soccer: *%v* (%v) just scored for *%v*\n\n"
-	message += ":joystick: %v"
+	message := ":soccer: *%s* (%s) just scored for *%s*\n\n"
+	message += ":joystick: %s"
 	message = fmt.Sprintf(message, goal.Player, goal.GoalTime, goal.PlayerTeam, goal.MatchScore)
 
 	return message

@@ -1,3 +1,5 @@
+// Program goal-notifier is a AWS Lambda function that's invoked via DynamoDB stream events,
+// processes the added / updated goal and sends Slack notifications to configred Slack webhook URLs.
 package main
 
 import (
@@ -15,7 +17,11 @@ import (
 	"github.com/pawelad/just-scored/just-scored"
 )
 
-// UnmarshalStreamImage converts events.DynamoDBAttributeValue to struct
+// UnmarshalStreamImage is a helper function that unmarshalls a map of DynamoDB
+// fields (i.e. record.Change.NewImage) onto passed struct pointer.
+// It's needed because dynamodbattribute.UnmarshalMap takes dynamodb.AttributeValue
+// and record.Change.NewImage returns events.DynamoDBAttributeValue.
+//
 // Taken from: https://stackoverflow.com/a/50017398/3023841
 func UnmarshalStreamImage(attribute map[string]events.DynamoDBAttributeValue, out interface{}) error {
 	dbAttrMap := make(map[string]*dynamodb.AttributeValue)
@@ -36,8 +42,9 @@ func UnmarshalStreamImage(attribute map[string]events.DynamoDBAttributeValue, ou
 
 }
 
-// SendGoalNotification sends a scored goal notification to passed Slack webhook URL
-func SendGoalNotification(url string, goal *justscored.Goal) (bool, error) {
+// SendGoalNotification sends a scored goal notification to passed Slack
+// webhook URL and sets it's DB processed value.
+func SendGoalNotification(url string, goal *justscored.Goal) error {
 	slackWebhook := slack.NewWebHook(url)
 
 	webhookPayload := slack.WebHookPostPayload{
@@ -48,7 +55,7 @@ func SendGoalNotification(url string, goal *justscored.Goal) (bool, error) {
 	err := slackWebhook.PostMessage(&webhookPayload)
 	if err != nil {
 		log.Print(err)
-		return false, err
+		return err
 	}
 
 	// Update goal processed status
@@ -57,18 +64,17 @@ func SendGoalNotification(url string, goal *justscored.Goal) (bool, error) {
 		log.Print(err)
 	}
 
-	return true, nil
+	return nil
 }
 
-// Handler is the AWS Lambda entry point.
-// It's invoked when a goal is added to a DynamoDB.
+// Handler is the AWS Lambda entry point
 func Handler(ctx context.Context, event events.DynamoDBEvent) {
 	var goals []*justscored.Goal
 
 	// SLACK_WEBHOOK_URLS is a comma separated list of webhook URLs
 	slackWebhookURLs := strings.Split(os.Getenv("SLACK_WEBHOOK_URLS"), ",")
 
-	// Convert DynamoDB event to a list of goals
+	// Convert the DynamoDB event to a list of goals
 	for _, record := range event.Records {
 		log.Printf("Processing request data for event ID '%s' (%s).", record.EventID, record.EventName)
 
@@ -89,12 +95,12 @@ func Handler(ctx context.Context, event events.DynamoDBEvent) {
 		}
 	}
 
-	// Send all goal notifications to all provided Slack webhook URLs
+	// Send goals notifications to all configured Slack webhook URLs
 	for _, url := range slackWebhookURLs {
-		log.Printf("Slack Webhook URL: '%v'", url)
+		log.Printf("Slack Webhook URL: '%s'", url)
 
 		for _, goal := range goals {
-			log.Printf("Sending notification for goal '%v'", goal)
+			log.Printf("Sending notification for goal '%+v'", goal)
 			// TODO: Use goroutines and channels
 			SendGoalNotification(url, goal)
 		}

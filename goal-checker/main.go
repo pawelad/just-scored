@@ -1,3 +1,5 @@
+// Program goal-checker is a AWS Lambda function that checks for scored goals in currently
+// played World Cup matches and saves them to DynamoDB (if they're not already there).
 package main
 
 import (
@@ -9,8 +11,7 @@ import (
 	"github.com/pawelad/just-scored/worldcup"
 )
 
-// Handler is the AWS Lambda entry point.
-// It checks for all goals in currently played World Cup match and saves them to DynamoDB
+// Handler is the AWS Lambda entry point
 func Handler() (string, error) {
 	client := worldcup.NewClient()
 	matches, err := client.GetCurrentMatches()
@@ -32,7 +33,7 @@ func Handler() (string, error) {
 	for _, match := range matches {
 		goals := justscored.GetMatchGoals(match)
 		addedGoals += justscored.AddGoals(goals)
-		log.Printf("Match %s was successfully parsed", match.FifaID)
+		log.Printf("Match '%s' was successfully parsed", match.FifaID)
 	}
 
 	return fmt.Sprintf("%d goals were added", addedGoals), nil

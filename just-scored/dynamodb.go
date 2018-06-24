@@ -12,6 +12,7 @@ import (
 // The table name is taken from DYNAMODB_TABLE environment variable.
 func getDynamoDBTable() dynamo.Table {
 	awsSession, err := session.NewSessionWithOptions(session.Options{
+		// This option makes use of the '~/.aws/config' file
 		SharedConfigState: session.SharedConfigEnable,
 	})
 	if err != nil {
@@ -25,7 +26,7 @@ func getDynamoDBTable() dynamo.Table {
 }
 
 // AddGoal adds passed goal to DynamoDB
-func AddGoal(goal *Goal) (added bool, err error) {
+func AddGoal(goal *Goal) error {
 	table := getDynamoDBTable()
 
 	// Check if the goal is already in the DB
@@ -36,7 +37,7 @@ func AddGoal(goal *Goal) (added bool, err error) {
 
 	if count != 0 {
 		log.Printf("Goal already added: '%+v'", goal)
-		return false, nil
+		return nil
 	}
 
 	log.Printf("Adding goal '%+v'", goal)
@@ -44,18 +45,18 @@ func AddGoal(goal *Goal) (added bool, err error) {
 
 	if err != nil {
 		log.Print(err)
-		return false, err
+		return err
 	}
 
-	return true, nil
+	return nil
 }
 
 // AddGoals adds passed goals to DynamoDB
 func AddGoals(goals []*Goal) (addedGoals int) {
 	for _, goal := range goals {
-		added, _ := AddGoal(goal)
+		err := AddGoal(goal)
 
-		if added {
+		if err == nil {
 			addedGoals++
 		}
 	}
