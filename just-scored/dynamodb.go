@@ -4,19 +4,21 @@ import (
 	"log"
 	"os"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/guregu/dynamo"
 )
 
 // getDynamoDBTable returns initialized dynamo.Table object.
-// The table name is taken from DYNAMODB_TABLE environment variable,
-// and the AWS region is taken from AWS_REGION
+// The table name is taken from DYNAMODB_TABLE environment variable.
 func getDynamoDBTable() dynamo.Table {
-	db := dynamo.New(
-		session.New(),
-		&aws.Config{Region: aws.String(os.Getenv("AWS_REGION"))},
-	)
+	awsSession, err := session.NewSessionWithOptions(session.Options{
+		SharedConfigState: session.SharedConfigEnable,
+	})
+	if err != nil {
+		log.Print(err)
+	}
+
+	db := dynamo.New(awsSession)
 	table := db.Table(os.Getenv("DYNAMODB_TABLE"))
 
 	return table
