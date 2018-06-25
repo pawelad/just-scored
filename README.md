@@ -1,4 +1,9 @@
 # Just Scored!
+[![Build status](https://img.shields.io/circleci/project/github/pawelad/just-scored.svg)][circleci]
+[![Test coverage](https://img.shields.io/coveralls/pawelad/just-scored.svg)][coveralls]
+[![Release](https://img.shields.io/github/release/pawelad/just-scored.svg)][github latest release]
+[![License](https://img.shields.io/github/license/pawelad/just-scored.svg)][license]
+
 Ever wanted to be notified in Slack when somebody scored a goal in the World
 Cup? No? Well, that's also fine - this was made mostly to play around with Go
 and Lambda so no harm done. But in case you *are* interested - read on!
@@ -39,8 +44,9 @@ $ serverless deploy
 ```
 
 And if you want to go _all_ the way, you can fork this repository and plug
-it into [CircleCI][circleci] using the existing CI / CD config I built - it
-runs tests on each push and deploys the app on each version tag.
+it into [CircleCI][circleci] - it will use the existing config I built, which
+implements full CI / CD pipeline. It runs tests on each push and deploys the
+app on each version tag.
 
 ## Contributions
 Package source code is available at [GitHub][github].
@@ -54,8 +60,10 @@ Developed and maintained by [Paweł Adamczak][pawelad].
 Released under [MIT License][license].
 
 
-[circleci]: https://circleci.com/
+[circleci]: https://circleci.com/gh/pawelad/just-scored
+[coveralls]: https://coveralls.io/github/pawelad/just-scored
 [github]: https://github.com/pawelad/just-scored
+[github latest release]: https://github.com/pawelad/just-scored/releases/latest
 [license]: https://github.com/pawelad/just-scored/blob/master/LICENSE
 [pawelad]: https://github.com/pawelad
 [serverless]: https://serverless.com/
