@@ -33,6 +33,7 @@ $ npm install serverless -g
 $ serverless config credentials --provider aws --key FOO --secret BAR
 $ export SLACK_WEBHOOK_URLS='https://hooks.slack.com/services/...'
 $ git clone https://github.com/pawelad/just-scored && cd just-scored
+$ make build 
 $ # Deployment
 $ serverless deploy
 ```
