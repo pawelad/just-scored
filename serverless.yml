@@ -3,7 +3,7 @@ service: just-scored
 provider:
   name: aws
   runtime: go1.x
-  stage: ${opt:stage, 'dev'}
+  stage: ${opt:stage, 'prod'}
   region: ${opt:region, 'us-east-1'}
   environment:
     DYNAMODB_TABLE: ${self:service}-${self:provider.stage}

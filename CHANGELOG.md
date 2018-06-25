@@ -6,6 +6,9 @@ adheres to [Semantic Versioning][semver].
 
 ## [Unreleased][unreleased]
 
+### Changed
+- Set Serverless stage to be prod by default.
+
 ## [v0.1.0][v0.1.0] - 2018-06-25
 ### Added
 - Update `Goal.NotificationSentAt` DB field when Slack notification is sent.
