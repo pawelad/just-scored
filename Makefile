@@ -11,7 +11,7 @@ test: install
 coveralls: install
 	go get github.com/mattn/goveralls
 	go test -v -cover -race -coverprofile=coverage.out ./...
-	goveralls -coverprofile=coverage.out -service=circle-ci -repotoken=${COVERALLS_TOKEN}
+	goveralls -coverprofile=coverage.out -service=circle-ci
 
 clean:
 	rm -rf bin/
