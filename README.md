@@ -9,7 +9,7 @@ Cup? No? Well, that's also fine - this was made mostly to play around with Go
 and Lambda, so no harm done. But in case you *are* interested - read on!
 
 <p align="center" >
-    <img src="https://cdn.rawgit.com/pawelad/just-scored/234dad65/screenshot.png" alt="Slack message">
+    <img src="https://cdn.rawgit.com/pawelad/just-scored/62a25ee9/screenshot.png" alt="Slack message">
 </p>
 
 ## Architecture
