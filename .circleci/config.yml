@@ -13,8 +13,8 @@ jobs:
           command: make install
 
       - run:
-          name: Run tests
-          command: make test
+          name: Run tests and send coverage report to Coveralls
+          command: make coveralls
 
   build:
     working_directory: /go/src/github.com/pawelad/just-scored
