@@ -6,6 +6,7 @@ adheres to [Semantic Versioning][semver].
 
 ## [Unreleased][unreleased]
 
+## [v0.1.1][v0.1.1] - 2018-06-25
 ### Changed
 - Set Serverless stage to be prod by default.
 
@@ -51,7 +52,7 @@ adheres to [Semantic Versioning][semver].
 
 ## [v0.0.2][v0.0.2] - 2018-06-20
 ### Fixed
-- Added DynamoDB definition and appropiate IAM to Serverless config file. 
+- Added DynamoDB definition and appropriate IAM to Serverless config file. 
 
 ## [v0.0.1][v0.0.1] - 2018-06-19
 ### Added
@@ -62,7 +63,7 @@ adheres to [Semantic Versioning][semver].
 
 [keepachangelog]: http://keepachangelog.com/en/1.0.0/
 [semver]: http://semver.org/spec/v2.0.0.html
-[unreleased]: https://github.com/pawelad/just-scored/compare/v0.1.0...HEAD
+[unreleased]: https://github.com/pawelad/just-scored/compare/v0.1.1...HEAD
 [v0.0.1]: https://github.com/pawelad/just-scored/releases/tag/v0.0.1
 [v0.0.2]: https://github.com/pawelad/just-scored/releases/tag/v0.0.2
 [v0.0.3]: https://github.com/pawelad/just-scored/releases/tag/v0.0.3
@@ -71,3 +72,4 @@ adheres to [Semantic Versioning][semver].
 [v0.0.6]: https://github.com/pawelad/just-scored/releases/tag/v0.0.6
 [v0.0.7]: https://github.com/pawelad/just-scored/releases/tag/v0.0.7
 [v0.1.0]: https://github.com/pawelad/just-scored/releases/tag/v0.1.0
+[v0.1.1]: https://github.com/pawelad/just-scored/releases/tag/v0.1.1
