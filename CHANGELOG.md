@@ -6,6 +6,7 @@ adheres to [Semantic Versioning][semver].
 
 ## [Unreleased][unreleased]
 
+## [v0.1.0][v0.1.0] - 2018-06-25
 ### Added
 - Update `Goal.NotificationSentAt` DB field when Slack notification is sent.
 
@@ -58,7 +59,7 @@ adheres to [Semantic Versioning][semver].
 
 [keepachangelog]: http://keepachangelog.com/en/1.0.0/
 [semver]: http://semver.org/spec/v2.0.0.html
-[unreleased]: https://github.com/pawelad/just-scored/compare/v0.0.7...HEAD
+[unreleased]: https://github.com/pawelad/just-scored/compare/v0.1.0...HEAD
 [v0.0.1]: https://github.com/pawelad/just-scored/releases/tag/v0.0.1
 [v0.0.2]: https://github.com/pawelad/just-scored/releases/tag/v0.0.2
 [v0.0.3]: https://github.com/pawelad/just-scored/releases/tag/v0.0.3
@@ -66,3 +67,4 @@ adheres to [Semantic Versioning][semver].
 [v0.0.5]: https://github.com/pawelad/just-scored/releases/tag/v0.0.5
 [v0.0.6]: https://github.com/pawelad/just-scored/releases/tag/v0.0.6
 [v0.0.7]: https://github.com/pawelad/just-scored/releases/tag/v0.0.7
+[v0.1.0]: https://github.com/pawelad/just-scored/releases/tag/v0.1.0

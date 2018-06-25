@@ -1,4 +1,5 @@
 # Just Scored!
+![AWS Lambda](https://img.shields.io/badge/AWS-Lambda-ff9900.svg)
 [![Build status](https://img.shields.io/circleci/project/github/pawelad/just-scored.svg)][circleci]
 [![Test coverage](https://img.shields.io/coveralls/pawelad/just-scored.svg)][coveralls]
 [![Release](https://img.shields.io/github/release/pawelad/just-scored.svg)][github latest release]
