@@ -1,5 +1,5 @@
 // Program goal-notifier is a AWS Lambda function that's invoked via DynamoDB stream events,
-// processes the added / updated goal and sends Slack notifications to configred Slack webhook URLs.
+// processes the added goal and sends Slack notifications to configred Slack webhook URLs.
 package main
 
 import (
@@ -73,8 +73,8 @@ func Handler(ctx context.Context, event events.DynamoDBEvent) {
 	for _, record := range event.Records {
 		log.Printf("Processing request data for event ID '%s' (%s).", record.EventID, record.EventName)
 
-		// We only care about inserts (and *maybe* updates)
-		if record.EventName == string(events.DynamoDBOperationTypeRemove) {
+		// We only care about inserts
+		if record.EventName != string(events.DynamoDBOperationTypeInsert) {
 			return
 		}
 
@@ -101,12 +101,12 @@ func Handler(ctx context.Context, event events.DynamoDBEvent) {
 			slackErr = SendGoalNotification(url, goal)
 		}
 
+		goal.SetDBValue("Processed", true)
+
 		// TODO: What if the *last* webhook POST fails?
 		if slackErr == nil {
 			goal.SetDBValue("NotificationSentAt", time.Now().UTC())
 		}
-
-		goal.SetDBValue("Processed", true)
 	}
 }
 
