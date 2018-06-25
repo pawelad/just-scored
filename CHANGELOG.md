@@ -6,32 +6,35 @@ adheres to [Semantic Versioning][semver].
 
 ## [Unreleased][unreleased]
 
+### Added
+- Update `Goal.NotificationSentAt` DB field when Slack notification is sent.
+
 ## [v0.0.7][v0.0.7] - 2018-06-24
-## Changed
+### Changed
 - Restructured `justscored.Goal`.
 
-## Fixed
+### Fixed
 - Properly handle own goals (#4).
 
 ## [v0.0.6][v0.0.6] - 2018-06-24
-## Added
+### Added
 - Added `goal-notifier` Lambda function.
 
-## Changed
+### Changed
 - Got rid of `goal-checker.Response` struct.
 
-## Fixed
+### Fixed
 - Renamed `GetCurrentMatch` to `GetCurrentMatches`, as there can be multiple
   matches played at the same time (#3).
 
 ## [v0.0.5][v0.0.5] - 2018-06-22
-## Changed
+### Changed
 - Refactored and separated match parsing and DB logic code.
 - Moved all goal and DynamoDB related code from `goal-checker` to
   `just-scored` package.
 - Save `Goal.CreatedAt` field as UTC.
 
-## Fixed
+### Fixed
 - Goals are not overridden if they already exist in the database (#2). 
 
 ## [v0.0.4][v0.0.4] - 2018-06-21

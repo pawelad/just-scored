@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -58,12 +59,6 @@ func SendGoalNotification(url string, goal *justscored.Goal) error {
 		return err
 	}
 
-	// Update goal processed status
-	err = goal.SetDBValue("Processed", true)
-	if err != nil {
-		log.Print(err)
-	}
-
 	return nil
 }
 
@@ -96,14 +91,22 @@ func Handler(ctx context.Context, event events.DynamoDBEvent) {
 	}
 
 	// Send goals notifications to all configured Slack webhook URLs
-	for _, url := range slackWebhookURLs {
-		log.Printf("Slack Webhook URL: '%s'", url)
+	for _, goal := range goals {
+		var slackErr error
+		log.Printf("Sending Slack notifications for goal '%+v'", goal)
 
-		for _, goal := range goals {
-			log.Printf("Sending notification for goal '%+v'", goal)
+		for _, url := range slackWebhookURLs {
+			log.Printf("Sending goal notification to: '%s'", url)
 			// TODO: Use goroutines and channels
-			SendGoalNotification(url, goal)
+			slackErr = SendGoalNotification(url, goal)
 		}
+
+		// TODO: What if the *last* webhook POST fails?
+		if slackErr == nil {
+			goal.SetDBValue("NotificationSentAt", time.Now().UTC())
+		}
+
+		goal.SetDBValue("Processed", true)
 	}
 }
 

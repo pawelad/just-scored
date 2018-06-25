@@ -54,6 +54,10 @@ func (goal Goal) SetDBValue(field string, value interface{}) error {
 		Set(field, value).
 		Run()
 
+	if err != nil {
+		log.Print(err)
+	}
+
 	return err
 }
 
