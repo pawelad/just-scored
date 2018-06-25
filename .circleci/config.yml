@@ -10,11 +10,11 @@ jobs:
 
       - run:
           name: Install dependencies
-          command: go get -v -t -d ./...
+          command: make install
 
       - run:
           name: Run tests
-          command: go test -v ./...
+          command: make test
 
   build:
     working_directory: /go/src/github.com/pawelad/just-scored
