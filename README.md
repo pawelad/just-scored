@@ -6,16 +6,20 @@
 
 Ever wanted to be notified in Slack when somebody scored a goal in the World
 Cup? No? Well, that's also fine - this was made mostly to play around with Go
-and Lambda so no harm done. But in case you *are* interested - read on!
+and Lambda, so no harm done. But in case you *are* interested - read on!
+
+<p align="center" >
+    <img src="https://cdn.rawgit.com/pawelad/just-scored/234dad65/screenshot.png" alt="Slack message">
+</p>
 
 ## Architecture
 The project is made of two AWS Lambda functions:
 - `goal-checker`, which runs every minute, checks for scored goals in
-  currently played match and saves them to a DynamoDB table
-- `goal-notifier`, which is triggered on DynamoDB table item creation and
-  sends a notification to configured Slack webhook(s)
+  currently played matches and saves them to a DynamoDB table
+- `goal-notifier`, which is triggered on DynamoDB table item creation
+  and sends a notification to the configured Slack webhook(s)
 
-The third piece of it all is `worlcup` - a very simple API wrapper I made for
+The third piece of it all is `worldcup` - a very simple API wrapper I made for
 http://worldcup.sfg.io/. I may put it in a separate repository after I
 implement all endpoints, but I decided to leave it here at the moment.
 
@@ -45,7 +49,7 @@ $ serverless deploy
 
 And if you want to go _all_ the way, you can fork this repository and plug
 it into [CircleCI][circleci] - it will use the existing config I built, which
-implements full CI / CD pipeline. It runs tests on each push and deploys the
+implements a full CI / CD pipeline. It runs tests on each push and deploys the
 app on each version tag.
 
 ## Contributions
