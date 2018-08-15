@@ -17,4 +17,4 @@ clean:
 	rm -rf bin/
 	go clean
 
-.PHONY: install gbuild test clean
+.PHONY: install build test coveralls clean
